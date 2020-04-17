@@ -2,8 +2,8 @@ package de.jonashackt.springbootvuejs.repository;
 
 import de.jonashackt.springbootvuejs.domain.WaitHistory;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface WaitRepository extends CrudRepository<WaitHistory, Long> {
+public interface WaitRepository extends JpaRepository<WaitHistory, Long> {
 
 }
