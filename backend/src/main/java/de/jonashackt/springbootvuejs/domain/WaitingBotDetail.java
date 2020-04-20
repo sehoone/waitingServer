@@ -23,12 +23,12 @@ public class WaitingBotDetail implements Serializable{
     private long wait_cnt;
     
     @Column(name = "create_date", updatable = false)
-	private LocalDate create_date;
+	private String create_date;
 
     protected WaitingBotDetail() {
     }
 
-    public WaitingBotDetail(long bot_info_seq, String server_name, long wait_cnt, LocalDate create_date) {
+    public WaitingBotDetail(long bot_info_seq, String server_name, long wait_cnt, String create_date) {
         this.bot_info_seq = bot_info_seq;
         this.server_name = server_name;
         this.wait_cnt = wait_cnt;
@@ -59,11 +59,11 @@ public class WaitingBotDetail implements Serializable{
         this.wait_cnt = wait_cnt;
     }
 
-    public LocalDate getCreate_date() {
+    public String getCreate_date() {
         return this.create_date;
     }
 
-    public void setCreate_date(LocalDate create_date) {
+    public void setCreate_date(String create_date) {
         this.create_date = create_date;
     }
 
@@ -82,7 +82,7 @@ public class WaitingBotDetail implements Serializable{
         return this;
     }
 
-    public WaitingBotDetail create_date(LocalDate create_date) {
+    public WaitingBotDetail create_date(String create_date) {
         this.create_date = create_date;
         return this;
     }

@@ -1,12 +1,10 @@
 package de.jonashackt.springbootvuejs.controller;
 
 import de.jonashackt.springbootvuejs.domain.User;
-import de.jonashackt.springbootvuejs.domain.WaitHistory;
 import de.jonashackt.springbootvuejs.domain.WaitingBotDetail;
 import de.jonashackt.springbootvuejs.domain.WaitingBotInfo;
 import de.jonashackt.springbootvuejs.exception.UserNotFoundException;
 import de.jonashackt.springbootvuejs.repository.UserRepository;
-import de.jonashackt.springbootvuejs.repository.WaitRepository;
 import de.jonashackt.springbootvuejs.repository.WaitingBotDetailRepository;
 import de.jonashackt.springbootvuejs.repository.WaitingBotInfoRepository;
 
@@ -29,9 +27,6 @@ public class BackendController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private WaitRepository waitRepository;
 
     @Autowired
     private WaitingBotInfoRepository waitingBotInfoRepository;
@@ -83,8 +78,9 @@ public class BackendController {
         LOG.info("GET called on /waitCntList resource");
         WaitingBotInfo resultInfo = waitingBotInfoRepository.findByLastRow();
 
-        //List<WaitingBotDetail> resultDetailList = waitingBotDetailRepository.findBySeqList(resultInfo.getBot_info_seq());
-        List<WaitingBotDetail> resultDetailList = waitingBotDetailRepository.findAll();
+        List<WaitingBotDetail> resultDetailList = waitingBotDetailRepository.findBySeqList(resultInfo.getBot_info_seq());
+        //List<WaitingBotDetail> resultDetailList = waitingBotDetailRepository.findAll();
+        //List<WaitHistory> result = waitRepository.findAll();
         return resultDetailList;
     }
 
