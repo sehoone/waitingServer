@@ -1,9 +1,13 @@
 package de.jonashackt.springbootvuejs.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name="waiting_bot_detail")
@@ -20,7 +24,9 @@ public class WaitingBotDetail {
     private long waitCnt;
     
     @Column(name = "create_date", updatable = false)
-    private LocalDate createDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @UpdateTimestamp
+    private LocalDateTime createDate;
     
     @Column(name = "bot_info_seq")
     private Integer bot_info_seq;
@@ -29,7 +35,7 @@ public class WaitingBotDetail {
     public WaitingBotDetail() {
     }
 
-    public WaitingBotDetail(Long botDetailSeq, String serverName, long waitCnt, LocalDate createDate, Integer bot_info_seq) {
+    public WaitingBotDetail(Long botDetailSeq, String serverName, long waitCnt, LocalDateTime createDate, Integer bot_info_seq) {
         this.botDetailSeq = botDetailSeq;
         this.serverName = serverName;
         this.waitCnt = waitCnt;
@@ -61,11 +67,11 @@ public class WaitingBotDetail {
         this.waitCnt = waitCnt;
     }
 
-    public LocalDate getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return this.createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -92,7 +98,7 @@ public class WaitingBotDetail {
         return this;
     }
 
-    public WaitingBotDetail createDate(LocalDate createDate) {
+    public WaitingBotDetail createDate(LocalDateTime createDate) {
         this.createDate = createDate;
         return this;
     }
@@ -128,6 +134,5 @@ public class WaitingBotDetail {
             ", bot_info_seq='" + getBot_info_seq() + "'" +
             "}";
     }
-
 
 }

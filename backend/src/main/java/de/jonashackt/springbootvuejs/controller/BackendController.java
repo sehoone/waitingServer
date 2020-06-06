@@ -1,15 +1,11 @@
 package de.jonashackt.springbootvuejs.controller;
 
 import de.jonashackt.springbootvuejs.domain.User;
-import de.jonashackt.springbootvuejs.domain.WaitingBotDetail;
 import de.jonashackt.springbootvuejs.domain.WaitingBotInfo;
 import de.jonashackt.springbootvuejs.exception.UserNotFoundException;
 import de.jonashackt.springbootvuejs.repository.UserRepository;
 import de.jonashackt.springbootvuejs.repository.WaitingBotDetailRepository;
 import de.jonashackt.springbootvuejs.repository.WaitingBotInfoRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

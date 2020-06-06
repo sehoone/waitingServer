@@ -2,8 +2,6 @@ package de.jonashackt.springbootvuejs.repository;
 
 import de.jonashackt.springbootvuejs.domain.WaitingBotInfo;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

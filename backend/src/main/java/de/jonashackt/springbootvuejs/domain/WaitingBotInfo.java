@@ -1,6 +1,6 @@
 package de.jonashackt.springbootvuejs.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +20,7 @@ public class WaitingBotInfo {
 	private String gameName;
 
     @Column(name = "create_date", updatable = false)
-	private LocalDate createDate;
+	private LocalDateTime createDate;
 
 	@OneToMany
 	@JoinColumn(name = "bot_info_seq")
@@ -30,7 +30,7 @@ public class WaitingBotInfo {
     public WaitingBotInfo() {
     }
 
-    public WaitingBotInfo(long botInfoSeq, String gameName, LocalDate createDate, List<WaitingBotDetail> botDetails) {
+    public WaitingBotInfo(long botInfoSeq, String gameName, LocalDateTime createDate, List<WaitingBotDetail> botDetails) {
         this.botInfoSeq = botInfoSeq;
         this.gameName = gameName;
         this.createDate = createDate;
@@ -53,11 +53,11 @@ public class WaitingBotInfo {
         this.gameName = gameName;
     }
 
-    public LocalDate getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return this.createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -79,7 +79,7 @@ public class WaitingBotInfo {
         return this;
     }
 
-    public WaitingBotInfo createDate(LocalDate createDate) {
+    public WaitingBotInfo createDate(LocalDateTime createDate) {
         this.createDate = createDate;
         return this;
     }
