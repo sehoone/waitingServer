@@ -1,89 +1,104 @@
 package de.jonashackt.springbootvuejs.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="waiting_bot_datail")
-public class WaitingBotDetail implements Serializable{
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name="waiting_bot_detail")
+public class WaitingBotDetail {
     @Id
-	@Column(name = "bot_info_seq", length = 11, nullable = false)
-    private long bot_info_seq;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bot_detail_seq")
+    private Long botDetailSeq;
     
 	@Column(name = "server_name", length = 50, nullable = false)
-    private String server_name;
+    private String serverName;
     
 	@Column(name = "wait_cnt", length = 50, nullable = true)
-    private long wait_cnt;
+    private long waitCnt;
     
     @Column(name = "create_date", updatable = false)
-	private String create_date;
+    private LocalDate createDate;
+    
+    @Column(name = "bot_info_seq")
+    private Integer bot_info_seq;
 
-    protected WaitingBotDetail() {
+
+    public WaitingBotDetail() {
     }
 
-    public WaitingBotDetail(long bot_info_seq, String server_name, long wait_cnt, String create_date) {
+    public WaitingBotDetail(Long botDetailSeq, String serverName, long waitCnt, LocalDate createDate, Integer bot_info_seq) {
+        this.botDetailSeq = botDetailSeq;
+        this.serverName = serverName;
+        this.waitCnt = waitCnt;
+        this.createDate = createDate;
         this.bot_info_seq = bot_info_seq;
-        this.server_name = server_name;
-        this.wait_cnt = wait_cnt;
-        this.create_date = create_date;
     }
 
-    public long getBot_info_seq() {
+    public Long getBotDetailSeq() {
+        return this.botDetailSeq;
+    }
+
+    public void setBotDetailSeq(Long botDetailSeq) {
+        this.botDetailSeq = botDetailSeq;
+    }
+
+    public String getServerName() {
+        return this.serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public long getWaitCnt() {
+        return this.waitCnt;
+    }
+
+    public void setWaitCnt(long waitCnt) {
+        this.waitCnt = waitCnt;
+    }
+
+    public LocalDate getCreateDate() {
+        return this.createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public Integer getBot_info_seq() {
         return this.bot_info_seq;
     }
 
-    public void setBot_info_seq(long bot_info_seq) {
+    public void setBot_info_seq(Integer bot_info_seq) {
         this.bot_info_seq = bot_info_seq;
     }
 
-    public String getServer_name() {
-        return this.server_name;
+    public WaitingBotDetail botDetailSeq(Long botDetailSeq) {
+        this.botDetailSeq = botDetailSeq;
+        return this;
     }
 
-    public void setServer_name(String server_name) {
-        this.server_name = server_name;
+    public WaitingBotDetail serverName(String serverName) {
+        this.serverName = serverName;
+        return this;
     }
 
-    public long getWait_cnt() {
-        return this.wait_cnt;
+    public WaitingBotDetail waitCnt(long waitCnt) {
+        this.waitCnt = waitCnt;
+        return this;
     }
 
-    public void setWait_cnt(long wait_cnt) {
-        this.wait_cnt = wait_cnt;
+    public WaitingBotDetail createDate(LocalDate createDate) {
+        this.createDate = createDate;
+        return this;
     }
 
-    public String getCreate_date() {
-        return this.create_date;
-    }
-
-    public void setCreate_date(String create_date) {
-        this.create_date = create_date;
-    }
-
-    public WaitingBotDetail bot_info_seq(long bot_info_seq) {
+    public WaitingBotDetail bot_info_seq(Integer bot_info_seq) {
         this.bot_info_seq = bot_info_seq;
-        return this;
-    }
-
-    public WaitingBotDetail server_name(String server_name) {
-        this.server_name = server_name;
-        return this;
-    }
-
-    public WaitingBotDetail wait_cnt(long wait_cnt) {
-        this.wait_cnt = wait_cnt;
-        return this;
-    }
-
-    public WaitingBotDetail create_date(String create_date) {
-        this.create_date = create_date;
         return this;
     }
 
@@ -95,22 +110,24 @@ public class WaitingBotDetail implements Serializable{
             return false;
         }
         WaitingBotDetail waitingBotDetail = (WaitingBotDetail) o;
-        return bot_info_seq == waitingBotDetail.bot_info_seq && Objects.equals(server_name, waitingBotDetail.server_name) && wait_cnt == waitingBotDetail.wait_cnt && Objects.equals(create_date, waitingBotDetail.create_date);
+        return Objects.equals(botDetailSeq, waitingBotDetail.botDetailSeq) && Objects.equals(serverName, waitingBotDetail.serverName) && waitCnt == waitingBotDetail.waitCnt && Objects.equals(createDate, waitingBotDetail.createDate) && Objects.equals(bot_info_seq, waitingBotDetail.bot_info_seq);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bot_info_seq, server_name, wait_cnt, create_date);
+        return Objects.hash(botDetailSeq, serverName, waitCnt, createDate, bot_info_seq);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " bot_info_seq='" + getBot_info_seq() + "'" +
-            ", server_name='" + getServer_name() + "'" +
-            ", wait_cnt='" + getWait_cnt() + "'" +
-            ", create_date='" + getCreate_date() + "'" +
+            " botDetailSeq='" + getBotDetailSeq() + "'" +
+            ", serverName='" + getServerName() + "'" +
+            ", waitCnt='" + getWaitCnt() + "'" +
+            ", createDate='" + getCreateDate() + "'" +
+            ", bot_info_seq='" + getBot_info_seq() + "'" +
             "}";
     }
- 
+
+
 }

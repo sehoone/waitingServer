@@ -1,6 +1,8 @@
 package de.jonashackt.springbootvuejs.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.*;
@@ -10,59 +12,80 @@ import javax.persistence.*;
 public class WaitingBotInfo {
 
     @Id
-	@Column(name = "bot_info_seq", length = 20, nullable = false)
-	private long bot_info_seq;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "bot_info_seq", nullable = false)
+    private long botInfoSeq;
+    
 	@Column(name = "game_name", length = 50, nullable = true)
-	private String game_name;
+	private String gameName;
 
     @Column(name = "create_date", updatable = false)
-	private LocalDate create_date;
+	private LocalDate createDate;
 
-    protected WaitingBotInfo() {
+	@OneToMany
+	@JoinColumn(name = "bot_info_seq")
+	private List<WaitingBotDetail> botDetails = new ArrayList<WaitingBotDetail>();
+
+
+    public WaitingBotInfo() {
     }
 
-    public WaitingBotInfo(long bot_info_seq, String game_name, LocalDate create_date) {
-        this.bot_info_seq = bot_info_seq;
-        this.game_name = game_name;
-        this.create_date = create_date;
+    public WaitingBotInfo(long botInfoSeq, String gameName, LocalDate createDate, List<WaitingBotDetail> botDetails) {
+        this.botInfoSeq = botInfoSeq;
+        this.gameName = gameName;
+        this.createDate = createDate;
+        this.botDetails = botDetails;
     }
 
-    public long getBot_info_seq() {
-        return this.bot_info_seq;
+    public long getBotInfoSeq() {
+        return this.botInfoSeq;
     }
 
-    public void setBot_info_seq(long bot_info_seq) {
-        this.bot_info_seq = bot_info_seq;
+    public void setBotInfoSeq(long botInfoSeq) {
+        this.botInfoSeq = botInfoSeq;
     }
 
-    public String getGame_name() {
-        return this.game_name;
+    public String getGameName() {
+        return this.gameName;
     }
 
-    public void setGame_name(String game_name) {
-        this.game_name = game_name;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
-    public LocalDate getCreate_date() {
-        return this.create_date;
+    public LocalDate getCreateDate() {
+        return this.createDate;
     }
 
-    public void setCreate_date(LocalDate create_date) {
-        this.create_date = create_date;
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
-    public WaitingBotInfo bot_info_seq(long bot_info_seq) {
-        this.bot_info_seq = bot_info_seq;
+    public List<WaitingBotDetail> getBotDetails() {
+        return this.botDetails;
+    }
+
+    public void setBotDetails(List<WaitingBotDetail> botDetails) {
+        this.botDetails = botDetails;
+    }
+
+    public WaitingBotInfo botInfoSeq(long botInfoSeq) {
+        this.botInfoSeq = botInfoSeq;
         return this;
     }
 
-    public WaitingBotInfo game_name(String game_name) {
-        this.game_name = game_name;
+    public WaitingBotInfo gameName(String gameName) {
+        this.gameName = gameName;
         return this;
     }
 
-    public WaitingBotInfo create_date(LocalDate create_date) {
-        this.create_date = create_date;
+    public WaitingBotInfo createDate(LocalDate createDate) {
+        this.createDate = createDate;
+        return this;
+    }
+
+    public WaitingBotInfo botDetails(List<WaitingBotDetail> botDetails) {
+        this.botDetails = botDetails;
         return this;
     }
 
@@ -74,22 +97,22 @@ public class WaitingBotInfo {
             return false;
         }
         WaitingBotInfo waitingBotInfo = (WaitingBotInfo) o;
-        return bot_info_seq == waitingBotInfo.bot_info_seq && Objects.equals(game_name, waitingBotInfo.game_name) && Objects.equals(create_date, waitingBotInfo.create_date);
+        return botInfoSeq == waitingBotInfo.botInfoSeq && Objects.equals(gameName, waitingBotInfo.gameName) && Objects.equals(createDate, waitingBotInfo.createDate) && Objects.equals(botDetails, waitingBotInfo.botDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bot_info_seq, game_name, create_date);
+        return Objects.hash(botInfoSeq, gameName, createDate, botDetails);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " bot_info_seq='" + getBot_info_seq() + "'" +
-            ", game_name='" + getGame_name() + "'" +
-            ", create_date='" + getCreate_date() + "'" +
+            " botInfoSeq='" + getBotInfoSeq() + "'" +
+            ", gameName='" + getGameName() + "'" +
+            ", createDate='" + getCreateDate() + "'" +
+            ", botDetails='" + getBotDetails() + "'" +
             "}";
     }
-
 
 }

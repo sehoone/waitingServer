@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface WaitingBotDetailRepository extends JpaRepository<WaitingBotDetail, Long> {
 
-    @Query(nativeQuery = true, value = "SELECT bot_info_seq, server_name, wait_cnt, create_date FROM waiting_bot_detail WHERE bot_info_seq=:seq")
-    List<WaitingBotDetail> findBySeqList(@Param("seq") long seq);
+    @Query(nativeQuery = true, value = "SELECT server_name, wait_cnt, create_date FROM waiting_bot_detail WHERE bot_info_seq=:seq")
+    List<WaitingBotDetail> selectSeqList(@Param("seq") long seq);
+
 }

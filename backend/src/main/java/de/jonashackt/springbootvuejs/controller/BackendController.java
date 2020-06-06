@@ -9,6 +9,7 @@ import de.jonashackt.springbootvuejs.repository.WaitingBotDetailRepository;
 import de.jonashackt.springbootvuejs.repository.WaitingBotInfoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,13 +75,11 @@ public class BackendController {
     }
 
     @RequestMapping(path = "/waitCntList")
-    public List<WaitingBotDetail> waitCntList() {
+    public WaitingBotInfo waitCntList() {
         LOG.info("GET called on /waitCntList resource");
         WaitingBotInfo resultInfo = waitingBotInfoRepository.findByLastRow();
-
-        List<WaitingBotDetail> resultDetailList = waitingBotDetailRepository.findBySeqList(resultInfo.getBot_info_seq());
-        //List<WaitingBotDetail> resultDetailList = waitingBotDetailRepository.findAll();
-        //List<WaitHistory> result = waitRepository.findAll();
+        WaitingBotInfo resultDetailList = waitingBotInfoRepository.findById(resultInfo.getBotInfoSeq());
+        
         return resultDetailList;
     }
 
